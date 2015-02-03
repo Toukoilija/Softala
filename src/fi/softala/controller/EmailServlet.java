@@ -64,7 +64,6 @@ public class EmailServlet extends HttpServlet {
 			lista.add((String) e.nextElement());
 		}
 		for(int i=0; i<lista.size(); i++) {
-			System.out.println(lista.get(i));
 			jotain=jotain+lista.get(i)+": "+request.getParameter(lista.get(i))+" ";
 		}
 		
