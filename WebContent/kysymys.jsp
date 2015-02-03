@@ -8,15 +8,15 @@
 </head>
 <body>
 
-<form action="" method="post">
+<form action="email" method="post">
 
 kysymysteksti
 <br>
-<textarea style="resize:none" rows="10" cols="50"></textarea>
+Tekstia: <input type="text" name="tekstia" placeholder="diipadaapaa" style="resize:none">
 <br>
+Juttuja: <input type="text" name="jotain" placeholder="diipadaapaa" style="resize:none">
 <input type="submit" value="Lähetä">
 
 </form>
-
 </body>
 </html>

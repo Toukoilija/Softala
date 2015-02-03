@@ -1,22 +1,21 @@
 package fi.softala.controller;
 
 import java.io.IOException;
-import java.util.Properties;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.mail.Message;
 
-import fi.softala.bean.Email;
 import fi.softala.helpers.EmailTools;
 
 /**
  * Servlet implementation class EmailServlet
  */
-@WebServlet("/EmailServlet")
+@WebServlet("/email")
 public class EmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +32,22 @@ public class EmailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EmailTools email = new EmailTools();
-		email.lahetaSahkoposti("softalamail@gmail.com",  "softala1", "aleksi.tilli@gmail.com","Palaute", "testi sisältö");
+	
+		String jotain="";
+		
+		ArrayList<String> lista = new ArrayList<String>();
+		
+		Enumeration<String> e = request.getParameterNames();
+
+		while(e.hasMoreElements()) {
+			lista.add((String) e.nextElement());
+		}
+		for(int i=0; i<lista.size(); i++) {
+			jotain=lista.get(i)+": "+request.getParameter(lista.get(i))+" ";
+		}
+
+		
+		email.lahetaSahkoposti("softalamail@gmail.com", "softala1", "dekadenzdeville@gmail.com","Palaute", jotain);
 	}
 
 	/**
@@ -41,10 +55,21 @@ public class EmailServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//muutetaan, kun tiedossa mitä tietoja sivulta tulee
-		String answer = request.getParameter("html-form-string");
+		
+		String jotain="";
+		ArrayList<String> lista = new ArrayList<String>();
+		
+		Enumeration<String> e = request.getParameterNames();
+		while(e.hasMoreElements()) {
+			lista.add((String) e.nextElement());
+		}
+		for(int i=0; i<lista.size(); i++) {
+			System.out.println(lista.get(i));
+			jotain=jotain+lista.get(i)+": "+request.getParameter(lista.get(i))+" ";
+		}
 		
 		EmailTools email = new EmailTools();
-		email.lahetaSahkoposti("softalamail@gmail.com", "aleksi.tilli@gmail.com", "softala1", "Palaute", "testi sisältö");
+		email.lahetaSahkoposti("softalamail@gmail.com", "softala1", "dekadenzdeville@gmail.com",  "Palaute", jotain);
 		
 		
 		response.sendRedirect("vahvistus.jsp");
