@@ -31,47 +31,24 @@ public class EmailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EmailTools email = new EmailTools();
-	
-		String jotain="";
 		
-		ArrayList<String> lista = new ArrayList<String>();
-		
-		Enumeration<String> e = request.getParameterNames();
+		response.sendRedirect("vahvistus.jsp");
 
-		while(e.hasMoreElements()) {
-			lista.add((String) e.nextElement());
-		}
-		for(int i=0; i<lista.size(); i++) {
-			jotain=lista.get(i)+": "+request.getParameter(lista.get(i))+" ";
-		}
-
-		
-		email.lahetaSahkoposti("softalamail@gmail.com", "softala1", "dekadenzdeville@gmail.com","Palaute", jotain);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//muutetaan, kun tiedossa mitÃ¤ tietoja sivulta tulee
 		
-		String jotain="";
-		ArrayList<String> lista = new ArrayList<String>();
+		//Haetaan käyttäjän syöttämä tieto
+		String vastaus=request.getParameter("InputMessage");
 		
-		Enumeration<String> e = request.getParameterNames();
-		while(e.hasMoreElements()) {
-			lista.add((String) e.nextElement());
-		}
-		for(int i=0; i<lista.size(); i++) {
-			jotain=jotain+lista.get(i)+": "+request.getParameter(lista.get(i))+" ";
-		}
-		
+		//Luodaan EmailTools-olio, joka lähettää sähköpostin haluttuun osoitteeseen
 		EmailTools email = new EmailTools();
-		email.lahetaSahkoposti("softalamail@gmail.com", "softala1", "dekadenzdeville@gmail.com",  "Palaute", jotain);
+		email.lahetaSahkoposti("softalamail@gmail.com", "softala1", "softala2015@gmail.com",  "Palaute", vastaus);
 		
-		
+		//Välitys seuraavalle jsp-sivulle
 		response.sendRedirect("vahvistus.jsp");
 	}
-
 }
