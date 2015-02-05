@@ -174,7 +174,7 @@
 	</div>
 
 <div class="container">
-<button class="btn btn-primary" type="submit" value="Send" formaction="kiitos.html">Submit</button>
+<button class="btn btn-primary" type="submit" value="Send" formaction="vahvistus.jsp">Submit</button>
 <button class="btn">Clear</button>
 <br><br>
 </div>
