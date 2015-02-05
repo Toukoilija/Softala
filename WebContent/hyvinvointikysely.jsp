@@ -67,7 +67,7 @@
         <h1>Aika hieno kysely</h1>
       </div>
 
-<form class="well" method="post">
+<form class="well" method="post" action="email">
   <h3>Kurssin tiedot</h3>
   <div class="dropdown">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -119,10 +119,9 @@
 </div>
 </div>
 </form>
-</form>
 
 	  
-	  <form method="post">
+	  <form action="email" method="post">
 <div class="well">
 <h3>Hyvinvointikysely</h3>
 <br>
@@ -131,7 +130,7 @@
 <div class="form-group">
 <div class="input-group">
 <label for="InputMessage">Ole hyvä ja kerro, miltä sinusta nyt tuntuu:</label>
-<textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required autofocus></textarea>
+<input type="text" name="InputMessage" id="InputMessage" class="form-control" rows="5" required autofocus>
 </div>
 </div>
 
@@ -174,7 +173,7 @@
 	</div>
 
 <div class="container">
-<button class="btn btn-primary" type="submit" value="Send" formaction="vahvistus.jsp">Submit</button>
+<button class="btn btn-primary" type="submit" value="Send" >Submit</button>
 <button class="btn">Clear</button>
 <br><br>
 </div>
