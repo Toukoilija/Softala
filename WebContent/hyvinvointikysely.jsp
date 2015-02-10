@@ -174,7 +174,6 @@
 
 <div class="container">
 <button class="btn btn-primary" type="submit" value="Send" >Submit</button>
-<button class="btn">Clear</button>
 <br><br>
 </div>
 </form>
