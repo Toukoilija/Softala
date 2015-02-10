@@ -131,6 +131,7 @@
 <div class="input-group">
 <label for="InputMessage">Ole hyvä ja kerro, miltä sinusta nyt tuntuu:</label>
 <input type="text" name="InputMessage" id="InputMessage" class="form-control" rows="5" required autofocus>
+<input type="hidden" name="receiver" value="softala2015@gmail.com">
 </div>
 </div>
 

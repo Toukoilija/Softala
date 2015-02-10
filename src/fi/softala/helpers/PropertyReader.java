@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class PropertyReader {
 
-	public static final String FILE_NAME = "fi/softala/resources/p.properties";
+	public static final String FILE_NAME = "p.properties";
 	private static PropertyReader instance;
 	private Properties properties;
 
