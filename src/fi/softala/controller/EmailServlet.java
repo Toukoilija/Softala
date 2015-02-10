@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fi.softala.helpers.EmailTools;
+import fi.softala.helpers.PropertyReader;
 
 /**
  * Servlet implementation class EmailServlet
@@ -18,6 +20,8 @@ import fi.softala.helpers.EmailTools;
 @WebServlet("/email")
 public class EmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private RequestDispatcher rd;
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,9 +35,8 @@ public class EmailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		response.sendRedirect("vahvistus.jsp");
-
+		rd = request.getRequestDispatcher("hyvinvointikysely.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -43,12 +46,20 @@ public class EmailServlet extends HttpServlet {
 		
 		//Haetaan käyttäjän syöttämä tieto
 		String vastaus=request.getParameter("InputMessage");
+		String receiver = request.getParameter("receiver");
+		
+		//Haetaan tunnukset property filestä
+		String acc = PropertyReader.getInstance().getProperty("email_account");
+		String pwd = PropertyReader.getInstance().getProperty("email_password");
+		System.out.println(acc);
+		System.out.println(pwd);
 		
 		//Luodaan EmailTools-olio, joka lähettää sähköpostin haluttuun osoitteeseen
 		EmailTools email = new EmailTools();
-		email.lahetaSahkoposti("softalamail@gmail.com", "softala1", "softala2015@gmail.com",  "Palaute", vastaus);
+		email.lahetaSahkoposti(acc, pwd, receiver,  "Palaute", vastaus);
 		
 		//Välitys seuraavalle jsp-sivulle
-		response.sendRedirect("vahvistus.jsp");
+		rd = request.getRequestDispatcher("vahvistus.jsp");
+		rd.forward(request, response);
 	}
 }
