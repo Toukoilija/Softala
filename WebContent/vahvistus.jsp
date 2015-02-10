@@ -66,10 +66,11 @@
         <h1>Aika hieno kysely</h1>
       </div>
       <div class="container">
-<h3>Kiitti hei</h3>
-<p>oli kiva ku vastasit</p>
-    </div>
-	</div>
+		<h3>Kiitti hei</h3>
+		<p>oli kiva ku vastasit</p>
+		<a class="btn btn-primary btn-lg" role="button" href="hyvinvointikysely.jsp" >Palaa</a>
+	    </div>
+		</div>
 	
 
     <footer class="footer">
